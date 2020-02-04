@@ -73,7 +73,7 @@ namespace nova::sharp {
                                        &vm_handle,
                                        &domain_id);
 
-        if(ret < 0) {
+        if(ret != 0) {
             return Result<NovaSharpVM>::error(NovaSharpError(ErrorType::InitFailed, ret, "CoreCLR init failed"));
         } else {
             return Result<NovaSharpVM>::ok(std::move(NovaSharpVM(vm_handle, domain_id, functions)));
